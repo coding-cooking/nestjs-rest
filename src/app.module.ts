@@ -13,9 +13,16 @@ import { APP_GUARD } from '@nestjs/core';
     DatabaseModule, 
     EmployeesModule,
     ThrottlerModule.forRoot([{
-      ttl: 60000,
+      name: "short",
+      ttl: 3000,
       limit: 3,
-    }])
+    },
+      {
+        name: "long",
+        ttl: 6000000,
+        limit: 100,
+      }
+  ])
   ],
   controllers: [AppController],
   providers: [AppService, {
