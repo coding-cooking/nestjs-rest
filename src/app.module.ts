@@ -9,20 +9,13 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    UsersModule, 
-    DatabaseModule, 
+    UsersModule,
+    DatabaseModule,
     EmployeesModule,
     ThrottlerModule.forRoot([{
-      name: "short",
-      ttl: 3000,
+      ttl: 1000,
       limit: 3,
-    },
-      {
-        name: "long",
-        ttl: 6000000,
-        limit: 100,
-      }
-  ])
+    }])
   ],
   controllers: [AppController],
   providers: [AppService, {
@@ -30,4 +23,4 @@ import { APP_GUARD } from '@nestjs/core';
     useClass: ThrottlerGuard,
   }],
 })
-export class AppModule {}
+export class AppModule { }
